@@ -14,8 +14,8 @@ class GameObject
         GameObject();
         GameObject(int ownerId);
 
-        virtual void Update();
-        virtual void Draw();
+        virtual void Update(Game* game);
+        virtual void Draw(Game* game);
         virtual void HandleCollision(GameObject* source);
 
     protected:
@@ -25,7 +25,7 @@ class GameObject
 };
 enum GameObjectType
 {
-    Player, Wall, Monster, Bomb
+    Player, Wall, Monster, Bomb, Explosion
 };
 #endif // GAMEOBJECT_H
 

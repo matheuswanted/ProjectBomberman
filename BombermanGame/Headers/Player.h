@@ -5,7 +5,7 @@ class Player : GameObject
 {
     public:
         Player();
-        void HandleKeyPress(char key);
+        void HandleEvents(cgf::InputManager * im);
     private:
         void PutBomb();
 };
