@@ -58,6 +58,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="Headers" />
+					<Add directory="Headers/PlayStates" />
 				</Compiler>
 				<Linker>
 					<Add library="bin/sfml-graphics-2.dll" />
@@ -71,6 +73,8 @@
 					<Add directory="../lib/SFML-2.4.2/lib-Windows" />
 					<Add directory="bin" />
 					<Add directory="../lib" />
+					<Add directory="Headers" />
+					<Add directory="Headers/PlayStates" />
 				</Linker>
 			</Target>
 			<Target title="Release-Windows">
@@ -111,6 +115,23 @@
 		<Linker>
 			<Add directory="../lib" />
 		</Linker>
+		<Unit filename="GameObjects/GameObject.cpp" />
+		<Unit filename="GameObjects/Map.cpp" />
+		<Unit filename="GameObjects/MapEnemy.cpp" />
+		<Unit filename="GameObjects/MapObject.cpp" />
+		<Unit filename="GameObjects/Player.cpp" />
+		<Unit filename="GameObjects/Score.cpp" />
+		<Unit filename="Headers/Explosion.h" />
+		<Unit filename="Headers/GameObject.h" />
+		<Unit filename="Headers/Map.h" />
+		<Unit filename="Headers/MapEnemy.h" />
+		<Unit filename="Headers/MapObject.h" />
+		<Unit filename="Headers/PlayStates/GamePlayState.h" />
+		<Unit filename="Headers/Player.h" />
+		<Unit filename="Main.cpp" />
+		<Unit filename="PlayStates/End.cpp" />
+		<Unit filename="PlayStates/GamePlayState.cpp" />
+		<Unit filename="PlayStates/Title.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />
