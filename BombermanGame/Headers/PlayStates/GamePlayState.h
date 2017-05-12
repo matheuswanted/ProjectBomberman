@@ -11,7 +11,7 @@ class GamePlayState : public cgf::GameState
 {
     public:
 
-    GamePlaysState();
+    GamePlayState();
 
     void init();
     void cleanup();

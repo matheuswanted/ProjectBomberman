@@ -2,7 +2,7 @@
 #include "GamePlayState.h"
 #include "InputManager.h"
 
-
+GamePlayState::GamePlayState(){}
 
 void GamePlayState::init()
 {
