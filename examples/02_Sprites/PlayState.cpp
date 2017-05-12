@@ -19,8 +19,15 @@ using namespace std;
 
 void PlayState::init()
 {
-    playSprite1.load("data/img/Char14.png");
+    playSprite1.load("data/img/Char14s.png");
     playSprite1.setPosition(10,100);
+
+    playBomb.load("data/bomb.png", 32, 32, 5, 5, 5, 5, 3, 1, 3);
+    playBomb.loadAnimation("data/bomb_anim.xml");
+    playBomb.setPosition(100,100);
+    playBomb.setAnimation("explode");
+    playBomb.setAnimRate(3);
+    playBomb.play();
 
     dirx = 0; // direção do sprite: para a direita (1), esquerda (-1)
     diry = 0; // baixo (1), cima (-1)
@@ -91,10 +98,12 @@ void PlayState::handleEvents(cgf::Game* game)
 void PlayState::update(cgf::Game* game)
 {
     playSprite1.update(game->getUpdateInterval());
+    playBomb.update(game->getUpdateInterval());
 }
 
 void PlayState::draw(cgf::Game* game)
 {
     screen = game->getScreen();
     screen->draw(playSprite1);
+    screen->draw(playBomb);
 }
