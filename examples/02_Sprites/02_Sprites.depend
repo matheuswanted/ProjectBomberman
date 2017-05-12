@@ -2980,7 +2980,7 @@
 	<SFML/System/Time.hpp>
 	<SFML/System/Clock.hpp>
 
-1494625017 c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\examples\02_sprites\playstate.h
+1494632440 c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\examples\02_sprites\playstate.h
 	"GameState.h"
 	"Sprite.h"
 	"InputManager.h"
@@ -3023,7 +3023,7 @@
 	<map>
 	<SFML/Graphics.hpp>
 
-1494626883 source:c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\examples\02_sprites\playstate.cpp
+1494632747 source:c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\examples\02_sprites\playstate.cpp
 	<iostream>
 	<cmath>
 	"Game.h"

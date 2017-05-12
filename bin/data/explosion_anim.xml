@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Format:
+name   => name of the animation sequence
+start  => starting frame
+end    => ending frame
+loop   => looping animation (default)
+-->
+<animation name="explosion">
+    <sequence name="top_max"  start="0" end="4" loop="false" />
+    <sequence name="top_min"  start="5" end="9" loop="false" />
+    <sequence name="middle"  start="10" end="14" loop="false" />
+    <sequence name="bot_min"  start="15" end="19" loop="false" />
+    <sequence name="bot_max"  start="20" end="24" loop="false" />
+    <sequence name="right_max"  start="25" end="29" loop="false" />
+    <sequence name="right_min"  start="30" end="34" loop="false" />
+    <sequence name="left_max"  start="35" end="39" loop="false" />
+    <sequence name="left_min"  start="40" end="44" loop="false" />
+</animation>
+

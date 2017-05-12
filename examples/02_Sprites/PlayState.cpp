@@ -26,8 +26,16 @@ void PlayState::init()
     playBomb.loadAnimation("data/bomb_anim.xml");
     playBomb.setPosition(100,100);
     playBomb.setAnimation("explode");
-    playBomb.setAnimRate(4);
+    playBomb.setAnimRate(1);
     playBomb.play();
+
+
+    playExplosion1.load("data/explosion_sheet.png", 32, 32, 5, 5, 5, 5, 5, 9, 45);
+    playExplosion1.loadAnimation("data/explosion_anim.xml");
+    playExplosion1.setPosition(200,200);
+    playExplosion1.setAnimation("top_max");
+    playExplosion1.setAnimRate(5);
+    playExplosion1.play();
 
     dirx = 0; // direção do sprite: para a direita (1), esquerda (-1)
     diry = 0; // baixo (1), cima (-1)
@@ -99,6 +107,7 @@ void PlayState::update(cgf::Game* game)
 {
     playSprite1.update(game->getUpdateInterval());
     playBomb.update(game->getUpdateInterval());
+    playExplosion1.update(game->getUpdateInterval());
 }
 
 void PlayState::draw(cgf::Game* game)
@@ -106,4 +115,5 @@ void PlayState::draw(cgf::Game* game)
     screen = game->getScreen();
     screen->draw(playSprite1);
     screen->draw(playBomb);
+    screen->draw(playExplosion1);
 }
