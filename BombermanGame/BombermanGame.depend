@@ -1222,7 +1222,7 @@
 
 1494622711 source:c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\bombermangame\gameobjects\mapobject.cpp
 
-1494644495 source:c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\bombermangame\gameobjects\player.cpp
+1494693819 source:c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\bombermangame\gameobjects\player.cpp
 	"Player.h"
 	<iostream>
 
@@ -1264,10 +1264,10 @@
 
 1494622711 source:c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\bombermangame\playstates\title.cpp
 
-1494639387 source:c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\bombermangame\gameobjects\bomb.cpp
+1494691394 source:c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\bombermangame\gameobjects\bomb.cpp
 	"Bomb.h"
 
-1494639367 c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\bombermangame\headers\bomb.h
+1494691373 c:\users\guilherme\documents\pucrs\7 semetre\nova pasta\projectbomberman\bombermangame\headers\bomb.h
 	"GameObject.h"
 	"InputManager.h"
 

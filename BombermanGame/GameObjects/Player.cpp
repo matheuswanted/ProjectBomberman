@@ -14,7 +14,7 @@ Player::Player(){
 
     //sprite.load("data/Sprites/Player/player.png",32,49,0,0,0,0,1,12,12);
     //sprite.loadAnimation("data/Sprites/Player/playeranim.xml");
-    sprite.load("data/Sprites/Player/secondary.png",32,51,5,5,5,5,4,4,16);
+    sprite.load("data/Sprites/Player/secondary_black.png",32,51,5,5,5,5,4,4,16);
     sprite.loadAnimation("data/Sprites/Player/secondary.xml");
     sprite.setAnimation(walkStates[currentDir]);
     sprite.setPosition(40,100);
