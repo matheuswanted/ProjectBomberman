@@ -24,3 +24,4 @@ void Bomb::Draw(cgf::Game* game) {
 void Bomb::HandleCollision(GameObject* source){
 
 }
+

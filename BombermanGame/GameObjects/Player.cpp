@@ -1,6 +1,4 @@
 #include "Player.h"
-
-
 Player::Player(){
     sprite.load("data/Sprites/Player/player.png",32,49,0,0,0,0,12,1,12);
     sprite.setCurrentFrame(0);
@@ -17,5 +15,9 @@ void Player::Draw(cgf::Game* game){
     game->getScreen()->draw(sprite);
 }
 void Player::HandleCollision(GameObject* source){
+
+}
+
+void Player::HandleCollision(Tile* source){
 
 }

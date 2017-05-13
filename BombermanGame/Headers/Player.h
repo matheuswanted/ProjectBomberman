@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "GameObject.h"
 #include "InputManager.h"
+#include "Tile.h"
 class Player : public GameObject
 {
     public:
@@ -10,6 +11,7 @@ class Player : public GameObject
         virtual void Update(cgf::Game* game);
         virtual void Draw(cgf::Game* game);
         virtual void HandleCollision(GameObject* source);
+        virtual void HandleCollision(Tile * tile);
     private:
         void PutBomb();
 };

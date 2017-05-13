@@ -1,33 +1,32 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
+#include "ObjectType.h"
 #include "GameState.h"
 #include "Sprite.h"
-/*enum GameObjectType
-{
-    Player, Wall, Monster, Bomb, Explosion
-};*/
+#include "Tile.h"
 class GameObject
 {
     public:
-        /// 1 - Player / 2 - Wall / 3 - Monster / 4 - Bomb
-        int objectType;
-        int objectOwnerId;
         int lifePoints;
-        int tileId;
-
         GameObject();
         GameObject(int ownerId);
 
         virtual void Update(cgf::Game* game);
         virtual void Draw(cgf::Game* game);
-        virtual void HandleCollision(GameObject* source);
+        virtual void HandleCollision(GameObject * obj);
+        virtual void HandleCollision(Tile * tile);
+        Tile * GetTile();
+        ObjectType GetType();
 
         bool IsDead();
 
     protected:
         cgf::Sprite sprite;
+        ObjectType type;
+        Tile * step = new Tile();
         virtual void DecreaseLife(int damage);
         virtual void Move(int direction);
+        virtual void Step();
 
 };
 #endif // GAMEOBJECT_H
