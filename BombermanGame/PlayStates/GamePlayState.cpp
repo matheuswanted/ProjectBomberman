@@ -11,11 +11,11 @@ void GamePlayState::init()
     bombs = new std::vector<GameObject>();
     explosions = new std::vector<GameObject>();
 
-    gameMap = new Map("data/maps","dungeon-tilesets2.tmx");
+    gameMap = new Map("data/maps","bomberman_stage_1.tmx");
 
     player = new Player();
 
-    bomb = new Bomb(100, 100);
+    bomb = new Bomb(0, 0);
 
     RegisterEvents();
 
