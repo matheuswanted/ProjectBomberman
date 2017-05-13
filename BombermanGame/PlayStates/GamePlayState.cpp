@@ -15,7 +15,7 @@ void GamePlayState::init()
 
     player = new Player();
 
-    bomb = new Bomb();
+    bomb = new Bomb(100, 100);
 
     RegisterEvents();
 

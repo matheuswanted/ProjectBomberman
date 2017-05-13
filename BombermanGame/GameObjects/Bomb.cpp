@@ -3,10 +3,10 @@
 
 using namespace std;
 
-Bomb::Bomb(){
+Bomb::Bomb(int x, int y){
     sprite.load("../bin/data/Sprites/Bombs/bomb.png", 32, 32, 5, 5, 5, 5, 6, 1, 6);
     sprite.loadAnimation("../bin/data/Sprites/Bombs/bomb_anim.xml");
-    sprite.setPosition(0, 0);
+    sprite.setPosition(x, y);
     sprite.setAnimation("explode");
     sprite.setAnimRate(2);
     sprite.play();

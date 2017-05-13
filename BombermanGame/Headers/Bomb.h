@@ -8,7 +8,7 @@
 class Bomb : public GameObject
 {
     public:
-        Bomb();
+        Bomb(int x, int y);
         virtual void Update(cgf::Game* game);
         virtual void Draw(cgf::Game* game);
         virtual void HandleCollision(GameObject* source);
