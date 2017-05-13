@@ -115,6 +115,7 @@
 		<Linker>
 			<Add directory="../lib" />
 		</Linker>
+		<Unit filename="GameObjects/Explosion.cpp" />
 		<Unit filename="GameObjects/GameObject.cpp" />
 		<Unit filename="GameObjects/Map.cpp" />
 		<Unit filename="GameObjects/MapEnemy.cpp" />

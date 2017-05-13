@@ -22,10 +22,13 @@ class GameObject
         virtual void Draw(cgf::Game* game);
         virtual void HandleCollision(GameObject* source);
 
+        bool IsDead();
+
     protected:
         cgf::Sprite sprite;
         virtual void DecreaseLife(int damage);
         virtual void Move(int direction);
+
 };
 #endif // GAMEOBJECT_H
 

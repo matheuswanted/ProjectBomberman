@@ -55,24 +55,21 @@ void GamePlayState::handleEvents(cgf::Game *game)
 }
 void GamePlayState::update(cgf::Game *game)
 {
+    CheckDead();
     HandleColissions();
     player->Update(game);
-    std::vector<GameObject>::iterator objs;
-    for (objs = objects->begin(); objs != objects->end(); objs++)
-        objs->Update(game);
-    for (objs = bombs->begin(); objs != objects->end(); objs++)
-        objs->Update(game);
-    for (objs = explosions->begin(); objs != objects->end(); objs++)
-        objs->Update(game);
+
+    ObjectsUpdateLoop(objects,game);
+    ObjectsUpdateLoop(bombs,game);
+    ObjectsUpdateLoop(explosions,game);
 }
+
 void GamePlayState::draw(cgf::Game *game)
 {
     gameMap->Draw(game->getScreen());
-    std::vector<GameObject>::iterator objs;
-    for (objs = objects->begin(); objs != objects->end(); objs++)
-        objs->Draw(game);
-    for (objs = explosions->begin(); objs != objects->end(); objs++)
-        objs->Draw(game);
+    ObjectsDrawLoop(objects,game);
+    ObjectsDrawLoop(bombs,game);
+    ObjectsDrawLoop(explosions,game);
     player->Draw(game);
 }
 void GamePlayState::HandleColissions()
@@ -98,6 +95,34 @@ void GamePlayState::HandleColissions()
 int GamePlayState::CheckCollision(GameObject *source, GameObject *dest)
 {
     return 0;
+}
+
+void GamePlayState::ObjectsDrawLoop(std::vector<GameObject> * objectVector, cgf::Game * game){
+    std::vector<GameObject>::iterator objIt = objectVector->begin();
+
+    for (; objIt != objectVector->end(); objIt++)
+        objIt->Draw(game);
+}
+
+void GamePlayState::ObjectsUpdateLoop(std::vector<GameObject> * objectVector, cgf::Game * game){
+    std::vector<GameObject>::iterator objIt = objectVector->begin();
+
+    for (; objIt != objectVector->end(); objIt++)
+        objIt->Update(game);
+}
+
+void GamePlayState::CheckDead()
+{
+    RemoveIfDead(objects);
+    RemoveIfDead(bombs);
+    RemoveIfDead(explosions);
+}
+
+void GamePlayState::RemoveIfDead(std::vector<GameObject> * objectVector){
+    std::vector<GameObject>::iterator objIt = objectVector->begin();
+
+    for (; objIt != objectVector->end(); objIt++)
+        if(objIt->IsDead()) objIt = objectVector->erase(objIt);
 }
 
 void GamePlayState::InsertObjectInGame(GameObject *object)

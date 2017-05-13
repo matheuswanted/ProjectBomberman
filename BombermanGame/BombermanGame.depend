@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1494535646 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\gameobject.cpp
+1494635300 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\gameobject.cpp
 	"GameObject.h"
 
 1494555688 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\map.cpp
@@ -9,7 +9,7 @@
 
 1494365121 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\mapobject.cpp
 
-1494535849 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\player.cpp
+1494637190 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\player.cpp
 	"Player.h"
 
 1494365121 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\score.cpp
@@ -23,7 +23,7 @@
 
 1494365121 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\playstates\end.cpp
 
-1494556217 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\playstates\gameplaystate.cpp
+1494635879 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\playstates\gameplaystate.cpp
 	<vector>
 	"GamePlayState.h"
 	"InputManager.h"
@@ -422,7 +422,7 @@
 
 1494365121 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\playstates\title.cpp
 
-1494535616 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\gameobject.h
+1494637172 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\gameobject.h
 	"GameState.h"
 	"Sprite.h"
 
@@ -614,11 +614,11 @@
 1494365124 c:\users\mathe\desktop\bombermanproject\projectbomberman\lib\cgf\include\debug.h
 	<iostream>
 
-1494555772 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\player.h
+1494636144 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\player.h
 	"GameObject.h"
 	"InputManager.h"
 
-1494632853 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\playstates\gameplaystate.h
+1494635660 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\playstates\gameplaystate.h
 	<vector>
 	"GameState.h"
 	"GameObject.h"
@@ -626,5 +626,9 @@
 	"Player.h"
 	"Explosion.h"
 
-1494474882 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\explosion.h
+1494633874 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\explosion.h
+	"GameObject.h"
+
+1494633886 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\explosion.cpp
+	"Explosion.h"
 

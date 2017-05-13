@@ -14,3 +14,7 @@ void GameObject::HandleCollision(GameObject* source){}
 void GameObject::Move(int direction){}
 
 void GameObject::Update(cgf::Game * game){}
+
+bool GameObject::IsDead(){
+    return lifePoints == 0;
+}

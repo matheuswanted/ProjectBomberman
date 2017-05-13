@@ -37,6 +37,11 @@ class GamePlayState : public cgf::GameState
     std::vector<GameObject> * explosions;
     cgf::InputManager * im;
     void RegisterEvents();
+
+    void ObjectsDrawLoop(std::vector<GameObject> * objectVector, cgf::Game * game);
+    void ObjectsUpdateLoop(std::vector<GameObject> * objectVector, cgf::Game * game);
+    void RemoveIfDead(std::vector<GameObject> * objectVector);
+    void CheckDead();
 };
 
 #endif
