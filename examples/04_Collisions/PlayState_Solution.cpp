@@ -46,10 +46,6 @@ void PlayState::init()
     //player.setScale(1,1);
     player.play();
 
-    enemy.load("data/img/Char14s.png");
-    enemy.setPosition(40,250);
-    enemy.setXspeed(50);
-    enemy.setScale(2,2);
 //    edirx = 1; // right
 
     dirx = 0; // sprite dir: right (1), left (-1)
