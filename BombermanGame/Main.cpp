@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 {
     cgf::Game game(5,30);
 
-	game.init("Framework com estados, sprites e tiling",800,600,false);
+	game.init("Framework com estados, sprites e tiling",544,512,false);
     GamePlayState state = GamePlayState();
     game.changeState(&state);
 

@@ -5,6 +5,8 @@ typedef struct Tile{
     Tile(){}
     Tile(float x,float y,float w,float h);
     Tile(int col,int row);
-    float x, y, width, height;
+    float x, y, width, height, speedX,speedY;
+    bool updateAnimOnly;
+    float offset;
 } Tile;
 #endif

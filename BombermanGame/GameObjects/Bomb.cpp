@@ -10,10 +10,16 @@ Bomb::Bomb(int x, int y){
     sprite.setAnimation("explode");
     sprite.setAnimRate(2);
     sprite.play();
+
+    type = ObjectType::Bomb;
+
+    SetTile();
 }
 
 void Bomb::Update(cgf::Game* game) {
     sprite.update(game->getUpdateInterval());
+
+    GameObject::Update(game);
 }
 
 void Bomb::Draw(cgf::Game* game) {

@@ -26,8 +26,9 @@ class GameObject
         Tile * step = new Tile();
         virtual void DecreaseLife(int damage);
         virtual void Move(int direction);
-        virtual void Step();
-
+        virtual void Step(double interval);
+        void SetTile();
+        void AdjustPosition(Tile * tile);
 };
 #endif // GAMEOBJECT_H
 

@@ -1,5 +1,4 @@
 
-
 #ifndef BOMB_H
 #define BOMB_H
 #include "GameObject.h"
@@ -16,3 +15,4 @@ class Bomb : public GameObject
     sf::RenderWindow* screen;
 };
 #endif // BOMB_H
+

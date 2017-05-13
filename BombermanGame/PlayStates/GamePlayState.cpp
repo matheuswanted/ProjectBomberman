@@ -13,11 +13,11 @@ void GamePlayState::init()
     staticObjects = new std::vector<GameObject*>();
     explosions = new std::vector<GameObject*>();
 
-    gameMap = new Map("data/maps","dungeon-tilesets2.tmx");
+    gameMap = new Map("data/maps","bomberman_stage_1.tmx");
 
     player = new Player();
 
-    staticObjects->push_back(new Bomb(150,100));
+    staticObjects->push_back(new Bomb(100,100));
 
     RegisterEvents();
 
@@ -39,6 +39,11 @@ void GamePlayState::resume()
 
 void GamePlayState::RegisterEvents(){
     im->addKeyInput("quit", sf::Keyboard::Escape);
+    im->addKeyInput("left", sf::Keyboard::Left);
+    im->addKeyInput("right", sf::Keyboard::Right);
+    im->addKeyInput("up", sf::Keyboard::Up);
+    im->addKeyInput("down", sf::Keyboard::Down);
+    im->addKeyInput("bomb", sf::Keyboard::Space);
 }
 
 void GamePlayState::handleEvents(cgf::Game *game)
@@ -132,29 +137,27 @@ bool GamePlayState::CheckCollision(Tile *source, Tile *dest)
     float x1min, y1min, x2max, y2max;
     float x1max, y1max, x2min, y2min;
     //obj1 min point
-    x1min = source->x - (source->width/2);
-    y1min = source->y - (source->height/2);
+    x1min = source->x;
+    x2max = dest->x + dest->width;
+
+    x1max = source->x + source->width;
+    y1max = source->y + source->height + source->offset;
+
 
     //obj2 max point
-    x2max = dest->x + (dest->width/2);
-    y2max = dest->y + (dest->height/2);
+    y1min = source->y + source->offset;
+    y2max = dest->y + dest->height + dest->offset;
+
+    x2min = dest->x;
+    y2min = dest->y + dest->offset;
 
 
-
-    //obj1 max point
-    x1max = source->x + (source->width/2);
-    y1max = source->y + (source->height/2);
-
-    //obj2 min point
-    x2min = dest->x - (dest->width/2);
-    y2min = dest->y - (dest->height/2);
-
-
-    if(x1min <= x2max && y1min<=y2max && x1max >= x2min && y1max>=y2min)
+    if(x1max>x2min && x1min<x2max && y1max >y2min && y1min<y2max)
         return true;
 
     return false;
 }
+
 
 void GamePlayState::ObjectsDrawLoop(std::vector<GameObject*> * objectVector, cgf::Game * game){
     std::vector<GameObject*>::iterator objIt = objectVector->begin();
