@@ -6,6 +6,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "Explosion.h"
+#include "Bomb.h"
 
 class GamePlayState : public cgf::GameState
 {
@@ -32,6 +33,7 @@ class GamePlayState : public cgf::GameState
     private:
     Map* gameMap;
     Player* player;
+    Bomb* bomb;
     std::vector<GameObject> * objects;
     std::vector<GameObject> * bombs;
     std::vector<GameObject> * explosions;

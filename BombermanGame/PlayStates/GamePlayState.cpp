@@ -15,6 +15,8 @@ void GamePlayState::init()
 
     player = new Player();
 
+    bomb = new Bomb(100, 100);
+
     RegisterEvents();
 
 }
@@ -58,6 +60,7 @@ void GamePlayState::update(cgf::Game *game)
     CheckDead();
     HandleColissions();
     player->Update(game);
+    bomb->Update(game);
 
     ObjectsUpdateLoop(objects,game);
     ObjectsUpdateLoop(bombs,game);
@@ -71,6 +74,7 @@ void GamePlayState::draw(cgf::Game *game)
     ObjectsDrawLoop(bombs,game);
     ObjectsDrawLoop(explosions,game);
     player->Draw(game);
+    bomb->Draw(game);
 }
 void GamePlayState::HandleColissions()
 {
