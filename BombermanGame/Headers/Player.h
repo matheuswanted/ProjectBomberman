@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "GameObject.h"
 #include "InputManager.h"
+
 class Player : public GameObject
 {
     public:
@@ -11,6 +12,14 @@ class Player : public GameObject
         virtual void Draw(cgf::Game* game);
         virtual void HandleCollision(GameObject* source);
     private:
+
+        enum { RIGHT=0, LEFT, UP, DOWN };
+        std::string walkStates[4];
+        int currentDir;
+
+        int x, y;
+        int dirx, diry;
+
         void PutBomb();
 };
 #endif // PLAYER_H
