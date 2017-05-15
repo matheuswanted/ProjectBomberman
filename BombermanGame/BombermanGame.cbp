@@ -115,20 +115,25 @@
 		<Linker>
 			<Add directory="../lib" />
 		</Linker>
+		<Unit filename="GameObjects/Bomb.cpp" />
 		<Unit filename="GameObjects/Explosion.cpp" />
 		<Unit filename="GameObjects/GameObject.cpp" />
 		<Unit filename="GameObjects/Map.cpp" />
 		<Unit filename="GameObjects/MapEnemy.cpp" />
-		<Unit filename="GameObjects/MapObject.cpp" />
 		<Unit filename="GameObjects/Player.cpp" />
 		<Unit filename="GameObjects/Score.cpp" />
+		<Unit filename="GameObjects/Tile.cpp" />
+		<Unit filename="GameObjects/Wall.cpp" />
+		<Unit filename="Headers/Bomb.h" />
 		<Unit filename="Headers/Explosion.h" />
 		<Unit filename="Headers/GameObject.h" />
 		<Unit filename="Headers/Map.h" />
 		<Unit filename="Headers/MapEnemy.h" />
-		<Unit filename="Headers/MapObject.h" />
+		<Unit filename="Headers/ObjectType.h" />
 		<Unit filename="Headers/PlayStates/GamePlayState.h" />
 		<Unit filename="Headers/Player.h" />
+		<Unit filename="Headers/Tile.h" />
+		<Unit filename="Headers/Wall.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="PlayStates/End.cpp" />
 		<Unit filename="PlayStates/GamePlayState.cpp" />
