@@ -7,14 +7,14 @@
 class GameObject
 {
     public:
-        int lifePoints;
+        float lifePoints = 1;
         GameObject();
-        GameObject(int ownerId);
 
         virtual void Update(cgf::Game* game);
         virtual void Draw(cgf::Game* game);
         virtual void HandleCollision(GameObject * obj);
         virtual void HandleCollision(Tile * tile);
+        virtual void Destroy();
         Tile * GetTile();
         ObjectType GetType();
 
@@ -24,8 +24,6 @@ class GameObject
         cgf::Sprite sprite;
         ObjectType type;
         Tile * step = new Tile();
-        virtual void DecreaseLife(int damage);
-        virtual void Move(int direction);
         virtual void Step(double interval);
         void SetTile();
         void AdjustPosition(Tile * tile);

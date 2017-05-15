@@ -40,8 +40,9 @@
             "name": "C++ Attach",
             "type": "cppdbg",
             "request": "attach",
-            "program": "enter program name, for example ${workspaceRoot}/a.out",
+            "program": "C:\\Users\\mathe\\Desktop\\BombermanProject\\ProjectBomberman\\BombermanGame\\bin\\BombermanGame.exe",
             "processId": "${command.pickProcess}",
+            "miDebuggerPath": "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin\\gdb.exe",
             "linux": {
                 "MIMode": "gdb",
                 "setupCommands": [

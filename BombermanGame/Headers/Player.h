@@ -3,23 +3,26 @@
 #include "GameObject.h"
 #include "InputManager.h"
 #include "Tile.h"
+#include "GameState.h"
 class Player : public GameObject
 {
     public:
-        Player();
+        Player(cgf::GameState * state);
         void HandleEvents(cgf::InputManager * im);
         virtual void Update(cgf::Game* game);
-        virtual void Draw(cgf::Game* game);
         virtual void HandleCollision(GameObject* source);
         virtual void HandleCollision(Tile * tile);
+        void GetBomb();
     private:
 
         enum { RIGHT=0, LEFT, UP, DOWN };
-        std::string walkStates[4];
+        std::string walkStates[8];
         int currentDir;
-
         int x, y;
         int dirx, diry;
+        cgf::GameState * putBombHandler;
+        int bombsLeft;
+        int bombRadius;
 
         void PutBomb();
 };

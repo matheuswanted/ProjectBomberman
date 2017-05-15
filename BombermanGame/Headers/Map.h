@@ -10,7 +10,9 @@ class Map
         ~Map();
         void Draw(sf::RenderWindow * screen);
         void Cleanup();
-        Tile * GetCellFromMap(float x, float y);
+        Tile ** GetPossibleCellCollisionsFromMap(float x, float y);
+        int GetRowCont();
+        bool HasWallOnCell(float x,float y);
     private:
         tmx::MapLoader* map;
         int GetTileFromLayer(tmx::MapLayer& layer, float mapRows,float x,float y,float deltaX,float deltaY, int &row, int &col);

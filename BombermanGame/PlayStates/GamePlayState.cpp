@@ -10,25 +10,50 @@ void GamePlayState::init()
 {
     im = cgf::InputManager::instance();
     movingObjects = new std::vector<GameObject*>();
-    staticObjects = new std::vector<GameObject*>();
-    explosions = new std::vector<GameObject*>();
+    staticObjectsMap = new std::map<int,GameObject*>();
 
     gameMap = new Map("data/maps","bomberman_stage_1.tmx");
 
-    player = new Player();
-
-    staticObjects->push_back(new Bomb(100,100));
-
+    player = new Player(this);
+    CreateWalls();
     RegisterEvents();
 
 }
+
+void GamePlayState::CreateWalls(){
+    int * arrayIt= new int[92]{
+        3,5,7,8,9,-1,
+        2,4,6,8,10,-1,
+        1,2,3,4,5,6,7,8,10,11,-1,
+        0,2,4,6,8,10,12,-1,
+        0,1,2,3,4,5,6,7,8,10,11,12,-1,
+        2,6,8,10,-1,
+        0,1,2,3,4,5,6,8,10,11,12,-1,
+        0,2,4,6,8,10,12,-1,
+        1,2,3,4,5,6,7,8,9,11,-1,
+        2,4,6,8,10,-1,
+        3,4,6,8,9
+    };
+    int rowCont = gameMap->GetRowCont();
+    int row = 0;
+    int i = 0;
+    int key = 0;
+    for (;i<92;i++){
+        if(arrayIt[i] == -1)
+            row++;
+        else{
+            key = (row+4)*rowCont + 2+arrayIt[i];
+            staticObjectsMap->insert(std::make_pair(key,new Wall((2+arrayIt[i])*32,(4+row)*32)));
+        }
+    }
+}
+
 void GamePlayState::cleanup()
 {
-    delete staticObjects;
     delete movingObjects;
-    delete explosions;
     delete gameMap;
     delete player;
+    delete staticObjectsMap;
 }
 void GamePlayState::pause()
 {
@@ -65,70 +90,87 @@ void GamePlayState::handleEvents(cgf::Game *game)
 void GamePlayState::update(cgf::Game *game)
 {
     CheckDead();
-    HandleColisions();
+    HandleCollisions();
     player->Update(game);
-
-    ObjectsUpdateLoop(staticObjects,game);
-    ObjectsUpdateLoop(movingObjects,game);
-    ObjectsUpdateLoop(explosions,game);
+    std::map<int,GameObject*>::iterator objectIt = staticObjectsMap->begin();
+    for(;objectIt != staticObjectsMap->end();objectIt++){
+        (objectIt->second)->Update(game);
+    }
+    std::vector<GameObject*>::iterator objIt = movingObjects->begin();
+    for (; objIt != movingObjects->end(); objIt++)
+        (*objIt)->Update(game);
 }
 
 void GamePlayState::draw(cgf::Game *game)
 {
     gameMap->Draw(game->getScreen());
-    ObjectsDrawLoop(staticObjects,game);
-    ObjectsDrawLoop(movingObjects,game);
-    ObjectsDrawLoop(explosions,game);
+
+    std::map<int,GameObject*>::iterator objectIt = staticObjectsMap->begin();
+    for(;objectIt != staticObjectsMap->end();objectIt++)
+        (objectIt->second)->Draw(game);
+
+    std::vector<GameObject*>::iterator objIt = movingObjects->begin();
+    for (; objIt != movingObjects->end(); objIt++)
+        (*objIt)->Draw(game);
+
     player->Draw(game);
 }
-void GamePlayState::HandleColisions()
+void GamePlayState::HandleCollisions()
 {
     std::vector<GameObject*>::iterator objectIt = movingObjects->begin();
-
     //CollisionCheckWithWalls
     //TODO
-    CheckLoopCollision(player,staticObjects);
-
+    CheckMapCollision(player);
     //Collision of moving objects
     for (; objectIt != movingObjects->end(); objectIt++){
-        if(CheckMapCollision(*objectIt))
-            (*objectIt)->HandleCollision(*objectIt);
-
-        CheckLoopCollision(*objectIt,staticObjects);
-
+        CheckMapCollision(*objectIt);
         if (CheckCollision((*objectIt)->GetTile(), player->GetTile())){
             player->HandleCollision(*objectIt);
             (*objectIt)->HandleCollision(player);
         }
     }
-
-
-    objectIt = explosions->begin();
-    for (; objectIt != explosions->end(); objectIt++)
-    {
-        ((Explosion*)*objectIt)->CheckBoundariesCollision(staticObjects);
-        ((Explosion*)*objectIt)->CheckBoundariesCollision(movingObjects);
-
-        if (CheckCollision(player->GetTile(), (*objectIt)->GetTile()))
-            player->HandleCollision(*objectIt);
-    }
 }
 bool GamePlayState::CheckMapCollision(GameObject * source){
     Tile * tile = source->GetTile();
-    Tile * tileMap = gameMap->GetCellFromMap(tile->x,tile->y);
-    if(tileMap){
-        source->HandleCollision(tileMap);
-        delete tileMap;
-    }
-}
 
-void GamePlayState::CheckLoopCollision(GameObject* src, std::vector<GameObject*> * objectVector){
-    std::vector<GameObject*>::iterator innerIt = objectVector->begin();
-    for (; innerIt != objectVector->end(); innerIt++){
-        if (CheckCollision(src->GetTile(), (*innerIt)->GetTile())){
-            src->HandleCollision(*innerIt);
+    float x, y;
+    x = tile->x;
+    y = tile->y+tile->offset;
+
+    int rowCont = gameMap->GetRowCont();
+
+    Tile ** tileMap = gameMap->GetPossibleCellCollisionsFromMap(x,y);
+    Tile * forDelete;
+    int i;
+    for(i = 0;i<4;i++){
+        if(*tileMap != NULL){
+            source->HandleCollision(*tileMap);
+            forDelete = *tileMap;
+
+            delete forDelete;
         }
+        tileMap++;
     }
+    int key = floor(y/32)*rowCont + floor(x/32);
+    if(staticObjectsMap->count(key) >0)
+        source->HandleCollision(staticObjectsMap->find(key)->second);
+
+    key = floor((y+32)/32)*rowCont + floor((x+32)/32);
+    if(staticObjectsMap->count(key) >0)
+        source->HandleCollision(staticObjectsMap->find(key)->second);
+
+
+    key = floor((y+32)/32)*rowCont + floor(x/32);
+    if(staticObjectsMap->count(key) >0)
+        source->HandleCollision(staticObjectsMap->find(key)->second);
+
+
+    key = floor(y/32)*rowCont + floor((x+32)/32);
+    if(staticObjectsMap->count(key) >0)
+        source->HandleCollision(staticObjectsMap->find(key)->second);
+
+
+
 }
 
 
@@ -158,43 +200,48 @@ bool GamePlayState::CheckCollision(Tile *source, Tile *dest)
     return false;
 }
 
-
-void GamePlayState::ObjectsDrawLoop(std::vector<GameObject*> * objectVector, cgf::Game * game){
-    std::vector<GameObject*>::iterator objIt = objectVector->begin();
-
-    for (; objIt != objectVector->end(); objIt++)
-        (*objIt)->Draw(game);
-}
-
-void GamePlayState::ObjectsUpdateLoop(std::vector<GameObject*> * objectVector, cgf::Game * game){
-    std::vector<GameObject*>::iterator objIt = objectVector->begin();
-
-    for (; objIt != objectVector->end(); objIt++)
-        (*objIt)->Update(game);
-}
-
 void GamePlayState::CheckDead()
 {
-    RemoveIfDead(staticObjects);
+    RemoveIfDead(staticObjectsMap);
     RemoveIfDead(movingObjects);
-    RemoveIfDead(explosions);
+}
+
+void GamePlayState::RemoveIfDead(std::map<int,GameObject*> * objectVector){
+    std::map<int,GameObject*>::iterator objIt = objectVector->begin();
+
+    while (objIt != objectVector->end())
+        if((objIt->second)->IsDead())
+            objIt = objectVector->erase(objIt);
+        else
+            objIt++;
 }
 
 void GamePlayState::RemoveIfDead(std::vector<GameObject*> * objectVector){
     std::vector<GameObject*>::iterator objIt = objectVector->begin();
 
-    for (; objIt != objectVector->end(); objIt++)
-        if((*objIt)->IsDead()) objIt = objectVector->erase(objIt);
+    while (objIt != objectVector->end())
+        if((*objIt)->IsDead())
+            objIt = objectVector->erase(objIt);
+        else
+            objIt++;
 }
 
-void GamePlayState::InsertObjectInGame(GameObject *object){
+bool GamePlayState::InsertObjectInGame(GameObject *object, bool overwriteCell){
+    int key = floor(object->GetTile()->y/32)*gameMap->GetRowCont() + floor(object->GetTile()->x/32);
     switch(object->GetType()){
         case ObjectType::Bomb://GameObjectType.Bomb:
-            staticObjects->push_back(object);
+            staticObjectsMap->insert(std::make_pair(key,object));
             break;
         case ObjectType::Explosion://GameObjectType.Explosion:
-            explosions->push_back(object);
+            if(gameMap->HasWallOnCell(object->GetTile()->x,object->GetTile()->y))
+                return false;
+            if(!overwriteCell && staticObjectsMap->find(key) != staticObjectsMap->end()){
+                    (*staticObjectsMap)[key]->Destroy();
+                return false;
+            }
+            (*staticObjectsMap)[key] = object;
             break;
         default: break;
     }
+    return true;
 }

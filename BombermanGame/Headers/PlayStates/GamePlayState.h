@@ -1,12 +1,14 @@
 #ifndef GAME_PLAY_STATE_H
 #define GAME_PLAY_STATE_H
 #include <vector>
+#include <map>
 #include "Player.h"
 #include "GameState.h"
 #include "GameObject.h"
 #include "Map.h"
 #include "Explosion.h"
 #include "Bomb.h"
+#include "Wall.h"
 #include "Tile.h"
 
 class GamePlayState : public cgf::GameState
@@ -25,25 +27,23 @@ class GamePlayState : public cgf::GameState
     void update(cgf::Game* game);
     void draw(cgf::Game* game);
 
-    void HandleColisions();
+    void HandleCollisions();
 
-    void InsertObjectInGame(GameObject * object);
+    bool InsertObjectInGame(GameObject * object, bool overwriteCell);
 
     private:
     Map* gameMap;
     Player* player;
+    std::map<int,GameObject*> * staticObjectsMap;
     std::vector<GameObject*> * movingObjects;
-    std::vector<GameObject*> * staticObjects;
-    std::vector<GameObject*> * explosions;
     cgf::InputManager * im;
     void RegisterEvents();
-    void CheckLoopCollision(GameObject* src, std::vector<GameObject*> * objectVector);
-    void ObjectsDrawLoop(std::vector<GameObject*> * objectVector, cgf::Game * game);
-    void ObjectsUpdateLoop(std::vector<GameObject*> * objectVector, cgf::Game * game);
     void RemoveIfDead(std::vector<GameObject*> * objectVector);
+    void RemoveIfDead(std::map<int,GameObject*> * objectVector);
     void CheckDead();
     bool CheckCollision(Tile * source, Tile * dest);
     bool CheckMapCollision(GameObject * source);
+    void CreateWalls();
 };
 
 #endif

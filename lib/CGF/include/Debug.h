@@ -7,13 +7,6 @@
 // caso o usuário queira (mantendo o mesmo comportamento para todos os sistemas de build
 #ifndef DISABLE_LOGGING
 
-#include <iostream>
-#define DEBUG_MSG(str) do { std::cout << str << '\n'; } while( false )
-// no new line
-#define DEBUG_MSG_NN(str) do { std::cout << str; } while( false )
-
-#else
-
 #define DEBUG_MSG(str) do { } while ( false )
 #define DEBUG_MSG_NN(str) do { } while ( false )
 

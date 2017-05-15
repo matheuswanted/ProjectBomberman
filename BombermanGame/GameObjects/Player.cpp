@@ -1,15 +1,21 @@
 #include "Player.h"
+#include "Bomb.h"
+#include "GamePlayState.h"
 #include<iostream>
+#include<cmath>
 
 using namespace std;
 
-Player::Player(){
-
+Player::Player(cgf::GameState * putBombHandler){
     type = ObjectType::Player;
     walkStates[0] = "right";
     walkStates[1] = "left";
     walkStates[2] = "up";
     walkStates[3] = "down";
+    walkStates[4] = "right-stop";
+    walkStates[5] = "left-stop";
+    walkStates[6] = "up-stop";
+    walkStates[7] = "down-stop";
 
     currentDir = DOWN;
 
@@ -18,7 +24,8 @@ Player::Player(){
     sprite.load("data/Sprites/Player/secondary_black.png",32,51,5,5,5,5,4,4,16);
     sprite.loadAnimation("data/Sprites/Player/secondary.xml");
     sprite.setAnimation(walkStates[currentDir]);
-    sprite.setPosition(64,140);
+    //sprite.setPosition(96,172);
+    sprite.setPosition(2*32,(3*32)+18);
     sprite.setAnimRate(30);
     sprite.setScale(1,1);
     sprite.play();
@@ -27,6 +34,9 @@ Player::Player(){
     diry = 0; // down (1), up (-1)
     SetTile();
     step->offset = 18;
+    this->putBombHandler = putBombHandler;
+    bombsLeft = 1;
+    bombRadius = 2;
 }
 void Player::HandleEvents(cgf::InputManager * im){
 
@@ -56,19 +66,32 @@ void Player::HandleEvents(cgf::InputManager * im){
     }
 
     if(dirx == 0 && diry == 0) {
+        if(currentDir < 4)
+            currentDir+=4;
+        sprite.setAnimation(walkStates[currentDir]);
         sprite.pause();
     }
     else {
         if(currentDir != newDir) {
             sprite.setAnimation(walkStates[newDir]);
             currentDir = newDir;
+            sprite.play();
         }
-        sprite.play();
     }
     step->speedX = 100*dirx;
     step->speedY = 100*diry;
+
+    if(im->testEvent("bomb"))
+        PutBomb();
 }
 void Player::PutBomb(){
+    if(bombsLeft){
+        ((GamePlayState*)putBombHandler)->InsertObjectInGame(new Bomb(floor((step->x+16)/32)*32,floor((step->y+step->offset+16)/32)*32,bombRadius,this,putBombHandler),false);
+        bombsLeft--;
+    }
+}
+void Player::GetBomb(){
+    bombsLeft++;
 }
 void Player::Update(cgf::Game* game){
     if(step->updateAnimOnly){
@@ -85,9 +108,6 @@ void Player::Update(cgf::Game* game){
     GameObject::Update(game);
 }
 
-void Player::Draw(cgf::Game* game){
-    game->getScreen()->draw(sprite);
-}
 void Player::HandleCollision(GameObject* source){
     HandleCollision(source->GetTile());
 }
