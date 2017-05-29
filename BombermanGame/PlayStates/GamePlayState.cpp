@@ -89,6 +89,8 @@ void GamePlayState::handleEvents(cgf::Game *game)
 }
 void GamePlayState::update(cgf::Game *game)
 {
+    if(player->IsDead())
+        game->quit();
     CheckDead();
     HandleCollisions();
     player->Update(game);

@@ -110,6 +110,9 @@ void Player::Update(cgf::Game* game){
 
 void Player::HandleCollision(GameObject* source){
     HandleCollision(source->GetTile());
+    if(source->GetType() == ObjectType::Explosion)
+        this->Destroy();
+
 }
 
 void Player::HandleCollision(Tile* source){

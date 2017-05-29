@@ -78,5 +78,5 @@ void GameObject::AdjustPosition(Tile * tile){
 }
 
 void GameObject::Destroy(){
-
+    lifePoints--;
 }

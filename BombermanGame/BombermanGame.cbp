@@ -14,6 +14,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="Headers" />
+					<Add directory="Headers/PlayStates" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics" />
@@ -126,6 +128,7 @@
 		<Unit filename="GameObjects/Wall.cpp" />
 		<Unit filename="Headers/Bomb.h" />
 		<Unit filename="Headers/Explosion.h" />
+		<Unit filename="Headers/GameEnd.h" />
 		<Unit filename="Headers/GameObject.h" />
 		<Unit filename="Headers/Map.h" />
 		<Unit filename="Headers/MapEnemy.h" />
