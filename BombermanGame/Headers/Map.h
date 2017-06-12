@@ -3,6 +3,8 @@
 #include <string>
 #include <tmx/MapLoader.h>
 #include "Tile.h"
+#include "GameState.h"
+
 class Map
 {
     public:
@@ -16,5 +18,6 @@ class Map
     private:
         tmx::MapLoader* map;
         int GetTileFromLayer(tmx::MapLayer& layer, float mapRows,float x,float y,float deltaX,float deltaY, int &row, int &col);
+        sf::Music music;
 };
 #endif // MAP_H

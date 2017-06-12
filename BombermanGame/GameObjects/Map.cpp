@@ -3,6 +3,10 @@
 Map::Map(std::string mapFolder, std::string mapName){
     map = new tmx::MapLoader(mapFolder);
     map->Load(mapName);
+    music.openFromFile("data/Sounds/level-1.ogg");
+    music.setVolume(30);  // 30% do volume máximo
+    music.setLoop(true);  // modo de loop: repete continuamente.
+    music.play();
 }
 Map::~Map(){
     this->Cleanup();
