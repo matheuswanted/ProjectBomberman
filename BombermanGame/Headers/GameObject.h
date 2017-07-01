@@ -15,6 +15,7 @@ class GameObject
         virtual void HandleCollision(GameObject * obj);
         virtual void HandleCollision(Tile * tile);
         virtual void Destroy();
+        bool IsDying();
         Tile * GetTile();
         ObjectType GetType();
 
@@ -25,8 +26,9 @@ class GameObject
         ObjectType type;
         Tile * step = new Tile();
         virtual void Step(double interval);
-        void SetTile();
         void AdjustPosition(Tile * tile);
+        void SetTile();
+        sf::Music music;
 };
 #endif // GAMEOBJECT_H
 

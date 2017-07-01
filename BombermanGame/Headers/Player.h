@@ -8,10 +8,11 @@ class Player : public GameObject
 {
     public:
         Player(cgf::GameState * state);
-        void HandleEvents(cgf::InputManager * im);
+        virtual void HandleEvents(cgf::InputManager * im);
         virtual void Update(cgf::Game* game);
         virtual void HandleCollision(GameObject* source);
         virtual void HandleCollision(Tile * tile);
+        virtual void Destroy();
         void GetBomb();
     private:
 

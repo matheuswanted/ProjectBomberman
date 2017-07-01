@@ -17,7 +17,7 @@ void GameObject::Update(cgf::Game * game){
 }
 
 bool GameObject::IsDead(){
-    return lifePoints == 0;
+    return lifePoints == 0 && (music.Stopped == music.getStatus() || music.Paused == music.getStatus());
 }
 void GameObject::SetTile(){
     step->height = 32;
@@ -79,4 +79,8 @@ void GameObject::AdjustPosition(Tile * tile){
 
 void GameObject::Destroy(){
     lifePoints--;
+}
+
+bool GameObject::IsDying(){
+    return lifePoints == 0;
 }

@@ -6,7 +6,7 @@
 	<vector>
 	"GameObject.h"
 
-1494816596 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\gameobject.h
+1498867467 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\gameobject.h
 	"ObjectType.h"
 	"GameState.h"
 	"Sprite.h"
@@ -563,17 +563,18 @@
 
 1494816596 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\tile.h
 
-1494816595 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\gameobject.cpp
+1498867769 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\gameobject.cpp
 	"GameObject.h"
 	<cmath>
 
-1494816596 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\map.cpp
+1498862803 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\map.cpp
 	"Map.h"
 
-1494816596 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\map.h
+1498862803 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\map.h
 	<string>
 	<tmx/MapLoader.h>
 	"Tile.h"
+	"GameState.h"
 
 1494365124 c:\users\mathe\desktop\bombermanproject\projectbomberman\lib\cgf\include\tmx\maploader.h
 	<tmx/QuadTreeNode.h>
@@ -601,14 +602,14 @@
 
 1494816596 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\mapenemy.cpp
 
-1494816596 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\player.cpp
+1498867733 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\player.cpp
 	"Player.h"
 	"Bomb.h"
 	"GamePlayState.h"
 	<iostream>
 	<cmath>
 
-1494816596 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\player.h
+1498867539 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\player.h
 	"GameObject.h"
 	"InputManager.h"
 	"Tile.h"
@@ -618,7 +619,7 @@
 	<map>
 	<SFML/Graphics.hpp>
 
-1494816596 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\bomb.h
+1498865686 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\bomb.h
 	"GameObject.h"
 
 1494816596 c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\headers\playstates\gameplaystate.h
@@ -644,7 +645,7 @@
 1494816596 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\wall.cpp
 	"Wall.h"
 
-1494816596 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\main.cpp
+1498862803 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\main.cpp
 	<iostream>
 	<cstdlib>
 	<string>
@@ -653,14 +654,14 @@
 
 1494816596 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\playstates\end.cpp
 
-1494816596 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\playstates\gameplaystate.cpp
+1498867138 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\playstates\gameplaystate.cpp
 	<vector>
 	"GamePlayState.h"
 	"InputManager.h"
 
 1494816596 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\playstates\title.cpp
 
-1494816595 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\bomb.cpp
+1498866097 source:c:\users\mathe\desktop\bombermanproject\projectbomberman\bombermangame\gameobjects\bomb.cpp
 	<iostream>
 	"Bomb.h"
 	"Player.h"

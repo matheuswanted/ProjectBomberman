@@ -36,10 +36,11 @@ Player::Player(cgf::GameState * putBombHandler){
     step->offset = 18;
     this->putBombHandler = putBombHandler;
     bombsLeft = 1;
-    bombRadius = 2;
+    bombRadius = 1;
 }
 void Player::HandleEvents(cgf::InputManager * im){
-
+    if(this->IsDying())
+        return;
     dirx = diry = 0;
 
     int newDir = currentDir;
@@ -110,8 +111,17 @@ void Player::Update(cgf::Game* game){
 
 void Player::HandleCollision(GameObject* source){
     HandleCollision(source->GetTile());
-    if(source->GetType() == ObjectType::Explosion)
+    if(source->GetType() == ObjectType::Explosion && !this->IsDying())
         this->Destroy();
+
+}
+
+void Player::Destroy(){
+    GameObject::Destroy();
+    music.openFromFile("data/Effects/bomberman_dying.wav");
+    music.setVolume(30);  // 30% do volume máximo
+    music.play();
+    sprite.setAnimation("death");
 
 }
 

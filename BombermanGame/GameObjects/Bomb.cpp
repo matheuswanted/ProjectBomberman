@@ -12,10 +12,13 @@ Bomb::Bomb(int x, int y){
     sprite.setAnimation("explode");
     sprite.setAnimRate(4);
     sprite.play();
+    music.openFromFile("data/Effects/bomb_put.wav");
+    music.setVolume(50);  // 30% do volume máximo
+    music.play();
 
     type = ObjectType::Bomb;
     SetTile();
-    radius = 3;
+    radius = 1;
 }
 
 Bomb::Bomb(int x, int y,int radius, GameObject * player, cgf::GameState * explosionHandler) : Bomb(x,y)
@@ -69,6 +72,9 @@ void Bomb::Explode(){
         if(!handler->InsertObjectInGame(new Explosion(x,y,4,j == radius),false))
             break;
     }
+    music.openFromFile("data/Effects/bomb_explosion.wav");
+    music.setVolume(30);  // 30% do volume máximo
+    music.play();
 }
 
 
