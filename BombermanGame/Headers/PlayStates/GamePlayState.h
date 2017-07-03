@@ -10,6 +10,7 @@
 #include "Bomb.h"
 #include "Wall.h"
 #include "Tile.h"
+#include "MapEnemy.h"
 
 class GamePlayState : public cgf::GameState
 {
@@ -44,6 +45,7 @@ class GamePlayState : public cgf::GameState
     bool CheckCollision(Tile * source, Tile * dest);
     bool CheckMapCollision(GameObject * source);
     void CreateWalls();
+    void CreateEnemies();
 };
 
 #endif

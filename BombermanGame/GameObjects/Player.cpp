@@ -105,7 +105,6 @@ void Player::Update(cgf::Game* game){
         sprite.update(game->getUpdateInterval());
     }
 
-
     GameObject::Update(game);
 }
 
@@ -114,6 +113,8 @@ void Player::HandleCollision(GameObject* source){
     if(source->GetType() == ObjectType::Explosion && !this->IsDying())
         this->Destroy();
 
+    if(source->GetType() == ObjectType::Enemy && !this->IsDying())
+        this->Destroy();
 }
 
 void Player::Destroy(){

@@ -16,8 +16,8 @@ void GamePlayState::init()
 
     player = new Player(this);
     CreateWalls();
+    CreateEnemies();
     RegisterEvents();
-
 }
 
 void GamePlayState::CreateWalls(){
@@ -46,6 +46,12 @@ void GamePlayState::CreateWalls(){
             staticObjectsMap->insert(std::make_pair(key,new Wall((2+arrayIt[i])*32,(4+row)*32)));
         }
     }
+}
+
+void GamePlayState::CreateEnemies(){
+    std::vector<GameObject*>::iterator it = movingObjects->begin();
+
+    movingObjects->insert(it, new MapEnemy(this, 4, 5));
 }
 
 void GamePlayState::cleanup()
